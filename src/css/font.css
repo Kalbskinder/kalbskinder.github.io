@@ -3,6 +3,10 @@ body, button, input, select, textarea {
     font-family: 'MinecraftiaRegular'; 
 }
 
+button {
+    font-family: 'MinecraftiaRegular';
+}
+
 .black {
     color: #000000;
 }
