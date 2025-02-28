@@ -69,7 +69,6 @@ async function loadStats(uuid) {
 async function loadHGLaborStats(uuid) {
   const response = await fetch(`https://api.hglabor.de/stats/ffa/${uuid}`)
   const data = await response.json();
-  console.log(data);
   const kdr = (data.deaths === 0) ? data.kills : (data.kills / data.deaths).toFixed(2);
 
   const stats = `

@@ -1,28 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-  font-family: "Press Start 2P", serif;
   display: flex;
+  background-color: #262626;
+  background-image: url('../../images/bg/2.jpg');
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
   flex-direction: column;
   justify-content: center;
   margin: 0;
   padding: 0;
-  background-color: #272727;
   color: white;
+  scroll-behavior: smooth;
+}
+
+nav {
+  width: 100%;
+  background-color: #151515;
+  display: flex;
+  justify-content: space-between;
+}
+.navbar img {
+  height: 50px;
+  width: auto;
+  vertical-align: middle;
 }
 
 .navbar {
   padding: 10px;
-  width: 100%;
-  background-color: #151515;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
 
-.navbar img {
-  height: 50px;
+.nav-right img {
+  height: 32px;
   width: auto;
+  vertical-align: middle;
+}
+
+.colorfilter {
+  filter: invert(100%) sepia(0%) saturate(7435%) hue-rotate(18deg) brightness(97%) contrast(97%);
+}
+
+nav .nav-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   margin-right: 10px;
 }
 
@@ -62,7 +87,9 @@ button {
 input {
   padding: 5px;
   font-size: 15px;
-  border: 1px solid #cccccc;
+  background-color: #000000c2;
+  color: white;
+  border: 1px solid #6a6a6a;
   border-radius: 5px;
   margin-right: 10px;
 }
@@ -83,18 +110,29 @@ input {
   width: 95%;
 }
 
+td.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+td {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease-in, transform 0.3s ease-in;
+}
+
 
 .player-card {
   font-size: 10px;
-  background-color: #333333;
-  border: 1px solid #454545;
+  background-color: #16131ff3;
+  border: 3px solid #252b60;
   border-radius: 6px;
 }
 
 .player-card:hover {
   cursor: pointer;
-  background-color: #424242;
-  border: 1px solid #555555;
+  background-color: #2a243bf3;
+  border: 3px solid #3e4692;
 }
 
 .player-list img {
@@ -111,8 +149,6 @@ input {
   gap: 20px;
 }
 
-
-
 li {
   display: inline-block;
   transition: background 0.3s ease-in-out;
@@ -122,7 +158,7 @@ li {
 table {
   width: 50%;
   border-collapse: collapse;
-  font-size: 1.3vh;
+  font-size: 1.5vh;
   margin: auto;
   margin-top: 30px;
 }
@@ -172,25 +208,44 @@ tr .avatar {
   
 }
 
-footer {
-  background-color: #151515;
+thead {
+  width: calc(500px - 24.8px);
+  background-color: #d4d4d4;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  border: none;
+  text-align: left;
+  border: 2.5px solid #000000;
+  box-shadow: 
+  -5px -4px 0px 1px rgba(77, 77, 77, 0.7) inset, 
+  200px 200px 0px -193.5px rgba(254, 254, 254, 0.8) inset;
+
+  -webkit-box-shadow: 
+    -5px -4px 0px 1px rgba(77, 77, 77, 0.7) inset, 
+    200px 200px 0px -193.5px rgba(254, 254, 254, 0.8) inset;
+
+  -moz-box-shadow: 
+    -5px -4px 0px 1px rgba(77, 77, 77, 0.7) inset, 
+    200px 200px 0px -193.5px rgba(254, 254, 254, 0.8) inset;
+}
+
+
+.pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  width: 100%;
-  color: white;
-  padding: 25px;
-  text-align: center;
-  font-size: 12px;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 50px;
 }
 
-footer a {
-  color: white;
-  text-decoration: none;
+.pagination button {
+  padding: 5px 10px;
+  font-size: 15px;
+  cursor: pointer;
 }
 
-footer a:hover {
-  color: rgb(77, 191, 253);
-    text-decoration: underline;
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

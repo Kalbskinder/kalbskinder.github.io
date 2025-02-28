@@ -4,22 +4,29 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="../images/logo.png" type="png" class="favicon">
+    <link rel="icon" href="./images/logo.png" type="png" class="favicon">
     <title>HGLabor - FFA Leaderboard</title>
-    <link rel="stylesheet" href="./src/css/lb.css" />
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/minecraftia" type="text/css"/> 
+    <link rel="stylesheet" href="./src/css/lb.css">
+    <link rel="stylesheet" href="./src/css/font.css">
 </head>
 
 <body>
-    <nav class="navbar">
-        <img src="./images/logo.png" alt="HGLabor" />
-        <a href="/">Home</a>
-        <a href="/stats/server">Server</a>
+    <nav>
+        <div class="navbar">
+            <img src="./images/logo.png" alt="HGLabor" />
+            <a href="/">Home</a>
+            <a href="/stats/server">Server</a>            
+        </div>
+        <div class="nav-right">
+            <a href="https://github.com/Kalbskinder/hglabor-website" target="_blank"><img src="./images/github.png" alt="Github" class="colorfilter"></a>
+        </div>
     </nav>
     <div class="head-element">
         <h1>Leaderboard</h1>
         <div class="search-elements">
-            <input type="text" placeholder="Search by username" />
-            <button>Search</button>
+            <input type="text" placeholder="Search by uuid" id="input"/>
+            <button onclick="redirectStats()">Search</button>
         </div>
     </div>
     <table id="leaderboard">
@@ -38,13 +45,11 @@
 
         </tbody>
     </table>
-    <footer>
-        <div class="credits">
-            <a href="https://github.com/Kalbskinder" target="_blank">GitHub</a>
-            <span class="devider">|</span>
-            <a href="https://norisk.gg/" target="_blank">NoRisk-Client</a>
-        </div>
-    </footer>
+    <div class="pagination bold">
+        <button id="prevPage" onclick="changePage(-1)" class="minecraft-btn">⬅ Zurück</button>
+        <span id="currentPage">Seite 1 von 5</span>
+        <button id="nextPage" onclick="changePage(1)" class="minecraft-btn">Weiter ➡</button>
+    </div>
     <script src="./src/js/lb.js"></script>
 </body>
 </html>
