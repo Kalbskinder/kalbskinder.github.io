@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+#heroes-container {
+    width: 500px;
+    margin: 20px auto;
+}
+
+.hero {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.hero-button {
+    font-family: "Press Start 2P", serif;
+    width: 100%;
+    background-color: #d4d4d4;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2.5px solid #000000;
+    text-shadow: 2.2px 1.5px 0px rgba(0,0,0,0.7);
+    box-shadow: 
+    -5px -4px 0px 1px rgba(77, 77, 77, 0.7) inset, 
+    200px 200px 0px -193.5px rgba(254, 254, 254, 0.8) inset;
+  
+    -webkit-box-shadow: 
+      -5px -4px 0px 1px rgba(77, 77, 77, 0.7) inset, 
+      200px 200px 0px -193.5px rgba(254, 254, 254, 0.8) inset;
+  
+    -moz-box-shadow: 
+      -5px -4px 0px 1px rgba(77, 77, 77, 0.7) inset, 
+      200px 200px 0px -193.5px rgba(254, 254, 254, 0.8) inset;
+}
+
+.hero-button:hover {
+    background-color: #c0bfbf;
+}
+
+.hero-content {
+    padding: 10px;
+    font-size: 1.2vh;
+    background-color: #16131ff3;
+    border: 3px solid #252b60;
+}
+
+.hero-content img {
+    vertical-align: middle;
+    margin-right: 5px;
+    width: 13%;
+    height: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.ability {
+    margin-top: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.ability strong {
+    color: rgb(77, 191, 253)
+}
+
+.ability:last-child {
+    border-bottom: none;
+}
+
+.ability-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.ability-name {
+    color: white;
+    text-align: left;
+    flex: 1;
+}
+
+.ability-value {
+    color: rgb(81, 214, 81);
+    text-align: right;
+    flex: 1;
+}
+
+.dropdown-icon {
+    transition: transform 0.2s;
+}
+
+@media (max-width: 768px) {
+    #hero-container {
+        width: 98%;
+    }
+    .hero-button {
+        width: 60%;
+    }
+}

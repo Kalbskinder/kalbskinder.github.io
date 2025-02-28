@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  font-family: "Press Start 2P", serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background-color: #272727;
+  color: white;
+}
+
+.navbar {
+  padding: 10px;
+  width: 100%;
+  background-color: #151515;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.navbar img {
+  height: 50px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+  color: rgb(77, 191, 253);
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.search-elements {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 7px 14px;
+  font-size: 15px;
+  background-color: rgb(44, 144, 199);
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+input {
+  padding: 5px;
+  font-size: 15px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.description {
+  width: 60%;
+  font-size: 12px;
+  border-bottom: 1px solid #ffffff;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.description ul {
+  width: 95%;
+}
+
+
+.player-card {
+  font-size: 10px;
+  background-color: #333333;
+  border: 1px solid #454545;
+  border-radius: 6px;
+}
+
+.player-card:hover {
+  cursor: pointer;
+  background-color: #424242;
+  border: 1px solid #555555;
+}
+
+.player-list img {
+  width: 42px;
+  height: auto;
+}
+
+.player-list ul, .description ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+
+
+li {
+  display: inline-block;
+  transition: background 0.3s ease-in-out;
+}
+
+
+table {
+  width: 50%;
+  border-collapse: collapse;
+  font-size: 1.3vh;
+  margin: auto;
+  margin-top: 30px;
+}
+
+th, td {
+  padding: 11px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+tbody {
+  font-size: 1vh;
+}
+
+tr .position {
+  width: 5%;
+}
+
+tr .avatar {
+  width: 1%;
+}
+
+
+@media (max-width: 768px) {
+  th, td {
+    padding: 8px;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 1vh;
+  }
+
+  .player-card {
+    font-size: 0.8vh;
+  }
+
+  .player-list img {
+    width: 20px;
+    height: auto;
+  }
+
+  table th:nth-child(7), table td:nth-child(7) {
+    display: none;
+  }
+  
+}
+
+footer {
+  background-color: #151515;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+  color: white;
+  padding: 25px;
+  text-align: center;
+  font-size: 12px;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: rgb(77, 191, 253);
+    text-decoration: underline;
+}

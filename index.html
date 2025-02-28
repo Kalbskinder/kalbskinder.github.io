@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../images/logo.png" type="png" class="favicon">
+    <title>HGLabor - FFA Leaderboard</title>
+    <link rel="stylesheet" href="./src/css/lb.css" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <img src="./images/logo.png" alt="HGLabor" />
+        <a href="/">Home</a>
+        <a href="/stats/server">Server</a>
+    </nav>
+    <div class="head-element">
+        <h1>Leaderboard</h1>
+        <div class="search-elements">
+            <input type="text" placeholder="Search by username" />
+            <button>Search</button>
+        </div>
+    </div>
+    <table id="leaderboard">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Avatar</th>
+                <th>Username</th>
+                <th>Kills</th>
+                <th>Deaths</th>
+                <th>KDR</th>
+                <th>Bounty</th>
+            </tr>
+        </thead>
+        <tbody class="player-list">
+
+        </tbody>
+    </table>
+    <footer>
+        <div class="credits">
+            <a href="https://github.com/Kalbskinder" target="_blank">GitHub</a>
+            <span class="devider">|</span>
+            <a href="https://norisk.gg/" target="_blank">NoRisk-Client</a>
+        </div>
+    </footer>
+    <script src="./src/js/lb.js"></script>
+</body>
+</html>
+
