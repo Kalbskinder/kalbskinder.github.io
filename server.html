@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./images/logo.png" type="png" class="favicon">
+    <title>HGLabor - Server Info</title>
+    <link rel="stylesheet" href="./src/css/lb.css">
+    <link rel="stylesheet" href="./src/css/font.css">
+    <link rel="stylesheet" href="./src/css/server.css">
+</head>
+
+<body>
+    <nav>
+        <div class="navbar">
+            <img src="./images/logo.png" alt="HGLabor" />
+            <a href="index.html">Home</a>
+            <a href="/">Server</a>            
+        </div>
+        <div class="nav-right">
+            <a href="https://github.com/Kalbskinder/hglabor-website" target="_blank"><img src="./images/github.png" alt="Github" class="colorfilter"></a>
+        </div>
+    </nav>
+    <div class="head-element white shadow">
+        <h1>Server Info</h1>
+    </div>
+    
+    <div class="stats-container">
+        <div class="stats-header">Info</div>    
+    </div>
+
+    <div id="server">
+        <div id="server-header">
+            <strong id="server-name">HGLabor</strong>
+            <div id="server-status" class="server-status">Lädt...</div>
+        </div>
+        <div id="server-body">
+            <img src="./images/logo.png" alt="Server logo" id="server-logo">
+            <div>
+                <div id="server-banner">HGLabor</div>
+            </div>
+            <div class="server-right">
+                <div id="server-players">Lädt...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchServer() {
+            try {
+                const response = await fetch('https://api.mcsrvstat.us/3/hglabor.de');
+                const serverData = await response.json();
+
+                // Serverstatus aktualisieren
+                const statusElement = document.getElementById("server-status");
+                statusElement.textContent = serverData.online ? "Online" : "Offline";
+                statusElement.className = `server-status ${serverData.online ? "server-online" : "server-offline"}`;
+
+                // Servernamen + Version anzeigen
+                document.getElementById("server-banner").innerHTML = `${serverData.motd.html[0]}<br>${serverData.motd.html[1]}`;
+
+                // Spielerzahl aktualisieren
+                document.getElementById("server-players").textContent = `${serverData.players.online} / ${serverData.players.max}`;
+            } catch (error) {
+                console.error("Fehler beim Abrufen der Serverdaten:", error);
+                document.getElementById("server-status").textContent = "Fehler";
+            }
+        }
+
+        fetchServer();
+    </script>
+</body>
+</html>

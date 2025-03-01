@@ -1,0 +1,111 @@
+body {
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+}
+
+.head-element {
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+
+#server {
+    background-color: #333;
+    border-right: 3px solid #000000;
+    border-bottom: 3px solid #000000;
+    border-left: 3px solid #000000;
+    color: white;
+    width: 465px;
+    border-radius: 0px 0px 8px 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+#server-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 14px;
+}
+
+.server-status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.server-online {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.server-offline {
+    background-color: #d9534f;
+    color: white;
+}
+
+#server-body {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#server-logo {
+    height: 48px;
+    width: auto;
+}
+
+#server-banner {
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#server-players {
+    font-size: 10px;
+}
+
+
+
+.stats-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+.stats-header {
+    width: calc(500px - 24.8px);
+    background-color: #d4d4d4;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border: none;
+    text-align: left;
+    font-size: 18px;
+    border: 2.5px solid #000000;
+    text-shadow: 2.2px 1.5px 0px rgba(0,0,0,0.7);
+    box-shadow: 
+    -5px -4px 0px 1px rgba(77, 77, 77, 0.7) inset, 
+    200px 200px 0px -193.5px rgba(254, 254, 254, 0.8) inset;
+  
+    -webkit-box-shadow: 
+      -5px -4px 0px 1px rgba(77, 77, 77, 0.7) inset, 
+      200px 200px 0px -193.5px rgba(254, 254, 254, 0.8) inset;
+  
+    -moz-box-shadow: 
+      -5px -4px 0px 1px rgba(77, 77, 77, 0.7) inset, 
+      200px 200px 0px -193.5px rgba(254, 254, 254, 0.8) inset;
+}
+

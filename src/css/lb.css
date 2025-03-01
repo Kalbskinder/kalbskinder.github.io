@@ -264,7 +264,6 @@ tr.third { background-image: url('../../images/blocks/copper_block_2d.png'); }
 tr.first, tr.second, tr.third {
   text-shadow: 2.2px 1.5px 0px rgba(0,0,0,0.7);
   background-repeat: repeat;
-  background-position: center;
   background-size: 32px;
   border: none;
   border-left: 3px solid #252b60;
