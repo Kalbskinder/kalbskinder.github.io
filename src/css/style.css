@@ -222,3 +222,12 @@ body {
     padding-right: 0px;
   }
 }
+
+.inventory-slot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  font-size: 13px;
+  text-shadow: 2.6px 2.6px #3F3F3F;
+  padding: 1.2px;
+}
