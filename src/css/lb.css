@@ -49,7 +49,7 @@ nav .nav-right {
   justify-content: flex-end;
   margin-right: 10px;
 }
-
+  
 .navbar a {
   color: white;
   text-decoration: none;
@@ -180,6 +180,26 @@ tr .avatar {
   width: 1%;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 
 @media (max-width: 768px) {
   th, td {
@@ -203,6 +223,14 @@ tr .avatar {
 
   table th:nth-child(7), table td:nth-child(7) {
     display: none;
+  }
+
+  input, button {
+    font-size: 10px;
+  }
+
+  .pagination, .pagination button {
+    font-size: 10px;
   }
   
 }
@@ -229,22 +257,24 @@ thead {
 }
 
 
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-  margin-bottom: 50px;
+tr.first { background-image: url('../../images/blocks/diamond_block_2d.png'); }
+tr.second { background-image: url('../../images/blocks/gold_block_2d.png'); }
+tr.third { background-image: url('../../images/blocks/copper_block_2d.png'); }
+
+tr.first, tr.second, tr.third {
+  text-shadow: 2.2px 1.5px 0px rgba(0,0,0,0.7);
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 32px;
+  border: none;
+  border-left: 3px solid #252b60;
+  border-right: 3px solid #252b60;
 }
 
-.pagination button {
-  padding: 5px 10px;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.pagination button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+tr.first:hover, tr.second:hover, tr.third:hover {
+  border: none;
+  border-left: 3px solid #252b60;
+  border-right: 3px solid #252b60;
+  filter: grayscale(0.1);
+  transition: filter 0.3s ease-in-out;
 }

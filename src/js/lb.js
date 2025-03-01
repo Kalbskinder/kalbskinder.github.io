@@ -29,9 +29,25 @@ function showPage(page) {
         const kdr = (deaths === 0) ? kills : (kills / deaths).toFixed(2);
         const avatarSrc = `https://crafatar.com/avatars/${player.playerId}`;
 
+        let counterElement;
+
         const playerRow = document.createElement("tr");
         playerRow.classList.add("player-card");
         playerRow.setAttribute('onclick', `info('${player.playerId}')`);
+
+        switch (counter) {
+            case 1:
+                playerRow.classList.add("first");
+                break;
+            case 2:
+                playerRow.classList.add("second");
+                break;
+            case 3:
+                playerRow.classList.add("third");
+                break;
+            default:
+                break;
+        }
 
         playerRow.innerHTML = `
             <td class="position">${counter}</td>
