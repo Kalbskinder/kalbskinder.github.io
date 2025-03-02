@@ -172,10 +172,6 @@ tbody {
   font-size: 1vh;
 }
 
-tr .position {
-  width: 5%;
-}
-
 tr .avatar {
   width: 1%;
 }
@@ -257,23 +253,19 @@ thead {
 }
 
 
-tr.first { background-image: url('../../images/blocks/diamond_block_2d.png'); }
-tr.second { background-image: url('../../images/blocks/gold_block_2d.png'); }
-tr.third { background-image: url('../../images/blocks/copper_block_2d.png'); }
+td.first { background-image: url('../../images/blocks/diamond_block_2d.png'); }
+td.second { background-image: url('../../images/blocks/gold_block_2d.png'); }
+td.third { background-image: url('../../images/blocks/copper_block_2d.png'); }
 
-tr.first, tr.second, tr.third {
+td.first, td.second, td.third {
   text-shadow: 2.2px 1.5px 0px rgba(0,0,0,0.7);
   background-repeat: repeat;
-  background-size: 32px;
+  background-size: 22.7px;
   border: none;
   border-left: 3px solid #252b60;
-  border-right: 3px solid #252b60;
 }
 
-tr.first:hover, tr.second:hover, tr.third:hover {
+td.first:hover, td.second:hover, td.third:hover {
   border: none;
   border-left: 3px solid #252b60;
-  border-right: 3px solid #252b60;
-  filter: grayscale(0.1);
-  transition: filter 0.3s ease-in-out;
 }

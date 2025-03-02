@@ -12,7 +12,7 @@
 }
 
 .hero-button {
-    font-family: "Press Start 2P", serif;
+    font-weight: bold;
     width: 100%;
     background-color: #d4d4d4;
     color: rgb(0, 0, 0);
@@ -45,7 +45,7 @@
 
 .hero-content {
     padding: 10px;
-    font-size: 1.2vh;
+    font-size: 10px;
     background-color: #16131ff3;
     border: 3px solid #252b60;
 }

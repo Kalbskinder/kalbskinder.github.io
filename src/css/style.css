@@ -56,6 +56,7 @@ body {
 }
 
 .stats-header {
+  font-weight: bold;
   width: calc(500px - 24.8px);
   background-color: #d4d4d4;
   color: rgb(0, 0, 0);
@@ -84,7 +85,7 @@ body {
   padding-left: 20px;
   padding-right: 20px;
   text-align: start;
-  font-size: 1.6vh;
+  font-size: 14px;
   background-color: #16131ff3;
   border: 3px solid #252b60;
   color: rgb(255, 255, 255);
@@ -215,11 +216,14 @@ body {
 
 
 @media (max-width: 768px) {
-  .stats, .stats-header {
+  .stats, .stats-header, #hero-container {
     width: 98%;
   }
   .stats {
     padding-right: 0px;
+  }
+  .hero, .hero-button {
+    width: 100%;
   }
 }
 
@@ -230,4 +234,29 @@ body {
   font-size: 13px;
   text-shadow: 2.6px 2.6px #3F3F3F;
   padding: 1.2px;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: rgb(10, 11, 24);
+  border: 2px solid rgb(28, 33, 81);
+  color: white;
+  padding: 5px 10px;
+  font-size: 14px;
+  text-align: left;
+  border-radius: 5px;
+  z-index: 1000;
+  display: none;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.tooltip-title {
+  font-weight: bold;
+  color: rgb(255, 255, 255);  /* Farbe für den Hauptnamen */
+}
+
+.tooltip-id {
+  font-size: 12px;
+  color: rgb(88, 87, 87);  /* Andere Farbe für die Item-ID */
 }

@@ -35,29 +35,52 @@ function showPage(page) {
         playerRow.classList.add("player-card");
         playerRow.setAttribute('onclick', `info('${player.playerId}')`);
 
+        const leaderElement = document.createElement("td");
+        leaderElement.innerHTML = counter;
+        leaderElement.classList.add("position");
         switch (counter) {
             case 1:
-                playerRow.classList.add("first");
+                leaderElement.classList.add("first");
                 break;
             case 2:
-                playerRow.classList.add("second");
+                leaderElement.classList.add("second");
                 break;
             case 3:
-                playerRow.classList.add("third");
+                leaderElement.classList.add("third");
                 break;
             default:
                 break;
         }
 
-        playerRow.innerHTML = `
-            <td class="position">${counter}</td>
-            <td class="avatar"><img src="${avatarSrc}" alt="Avatar"></td>
-            <td>${username}</td>
-            <td>${kills}</td>
-            <td>${deaths}</td>
-            <td>${kdr}</td>
-            <td>${bounty}</td>
-        `;
+        // Erstellt die einzelnen Zellen (td)
+        const avatarTd = document.createElement("td");
+        avatarTd.classList.add("avatar");
+        avatarTd.innerHTML = `<img src="${avatarSrc}" alt="Avatar">`;
+
+        const usernameTd = document.createElement("td");
+        usernameTd.textContent = username;
+
+        const killsTd = document.createElement("td");
+        killsTd.textContent = kills;
+
+        const deathsTd = document.createElement("td");
+        deathsTd.textContent = deaths;
+
+        const kdrTd = document.createElement("td");
+        kdrTd.textContent = kdr;
+
+        const bountyTd = document.createElement("td");
+        bountyTd.textContent = bounty;
+
+        // Füge alles in die Row ein
+        playerRow.appendChild(leaderElement);
+        playerRow.appendChild(avatarTd);
+        playerRow.appendChild(usernameTd);
+        playerRow.appendChild(killsTd);
+        playerRow.appendChild(deathsTd);
+        playerRow.appendChild(kdrTd);
+playerRow.appendChild(bountyTd);
+
 
         playerList.appendChild(playerRow);
 

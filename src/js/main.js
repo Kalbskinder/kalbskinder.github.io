@@ -284,10 +284,19 @@ function loadSlots(targetContainer, items) {
 
         // Neues div-Element erstellen
         const slot = document.createElement("div");
-        slot.classList.add("inventory-slot"); // Falls du spezifische Styles anwenden willst
+        slot.classList.add("inventory-slot");
+        slot.classList.add("tooltip-item");
+
+        if (itemName === "compass") {
+          slot.style.backgroundImage = "url('./images/inventory/compass.gif')";
+        } else {
+          slot.style.backgroundImage = `url('./images/inventory/${itemName}.png')`;
+        }
+
+        const formattedName = formatMinecraftName(itemName)
+        slot.setAttribute("data-tooltip", `${formattedName}\n${item.id}`);
 
         // Hintergrundbild setzen
-        slot.style.backgroundImage = `url('./images/inventory/${itemName}.png')`;
         slot.style.backgroundSize = "contain"; // Sicherstellen, dass das Bild vollständig sichtbar ist
         slot.style.backgroundRepeat = "no-repeat";
         slot.style.backgroundPosition = "center";
@@ -303,6 +312,46 @@ function loadSlots(targetContainer, items) {
         // Slot dem Container hinzufügen
         targetContainer.appendChild(slot);
     });
+    enableTooltips();
 }
 
 fetchInventory(uuid, 'uhc')
+
+function enableTooltips() {
+  const tooltip = document.createElement("div");
+  tooltip.className = "tooltip";
+  document.body.appendChild(tooltip);
+
+  document.querySelectorAll(".tooltip-item").forEach(slot => {
+      slot.addEventListener("mouseenter", (event) => {
+          const tooltipText = event.target.getAttribute("data-tooltip");
+          if (!tooltipText || tooltipText.includes("EMPTY")) return;
+
+          // Tooltip-Text aufteilen
+          const [itemName, itemID] = tooltipText.split("\n");
+
+          // HTML für Tooltip setzen
+          tooltip.innerHTML = `
+              <span class="tooltip-title">${itemName}</span><br>
+              <span class="tooltip-id">${itemID}</span>
+          `;
+
+          tooltip.style.display = "block";
+      });
+
+      slot.addEventListener("mousemove", (event) => {
+          tooltip.style.left = event.pageX + 10 + "px";
+          tooltip.style.top = event.pageY + 10 + "px";
+      });
+
+      slot.addEventListener("mouseleave", () => {
+          tooltip.style.display = "none";
+      });
+  });
+}
+
+function formatMinecraftName(name) {
+  return name
+      .replace(/_/g, " ")
+      .replace(/\b\w/g, (char) => char.toUpperCase());
+}
