@@ -179,9 +179,15 @@ viewer.canvas.addEventListener("touchmove", stopAutoRotate);
 async function fetchInventory(uuid, gm) {
   const res = await fetch(`https://api.hglabor.de/ffa/inventory/${uuid}/${gm}`);
   if (!res.ok) {
-      console.error(`Fehler: ${res.status} ${res.statusText}`);
-      return;
-  }
+    console.error(`Fehler: ${res.status} ${res.statusText}`);
+    const hotbarSlots = document.querySelector('.hotbar');
+    const slots = [
+      "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+      { id: "minecraft:barrier", count: 1, customName: "Player has no saved inventory" }
+    ];
+    loadSlots(hotbarSlots, slots);
+    return;
+}
 
   const data = await res.json();
   const armor = {
@@ -294,7 +300,11 @@ function loadSlots(targetContainer, items) {
         }
 
         const formattedName = formatMinecraftName(itemName)
-        slot.setAttribute("data-tooltip", `${formattedName}\n${item.id}`);
+        if (item.customName) {
+          slot.setAttribute("data-tooltip", `${item.customName}\n${item.id}`);
+        } else {
+          slot.setAttribute("data-tooltip", `${formattedName}\n${item.id}`);
+        }
 
         // Hintergrundbild setzen
         slot.style.backgroundSize = "contain"; // Sicherstellen, dass das Bild vollständig sichtbar ist
