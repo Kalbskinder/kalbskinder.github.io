@@ -19,10 +19,9 @@ function initSkinViewer() {
         cape: "./images/cape.png"
     });
 
-    skinViewer.fov = 50;
-    skinViewer.zoom = 0.82;
+    skinViewer.fov = 60;
+    skinViewer.zoom = 0.72;
     skinViewer.autoRotate = false;
-    skinViewer.enableControls = false;
 
     skinViewer.animation = new skinview3d.WalkingAnimation();
     skinViewer.animation.speed = 0.7;
@@ -44,7 +43,7 @@ function initSkinViewer() {
     skinViewerElement.addEventListener("mouseenter", () => {
         if (skinViewer) {
             skinViewer.animation = new skinview3d.WaveAnimation();
-            skinViewer.animation.speed = 3;
+            skinViewer.animation.speed = 5;
         }
     });
 
