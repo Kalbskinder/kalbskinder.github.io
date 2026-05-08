@@ -99,6 +99,7 @@ function createButton(buttonElement, config, fallback) {
 
     buttonElement.querySelector("span").textContent = config.text;
     const iconElement = buttonElement.querySelector("i");
+    iconElement.className = "";
     classesToAdd.forEach(cls => iconElement.classList.add(cls));
     buttonElement.href = config.href || fallback.href;
     buttonElement.target = config.openInNewTab ? "_blank" : "_self";
@@ -170,6 +171,18 @@ async function renderProjects() {
             `;
 
             cardBottomContainer.appendChild(modrinthStatsContainer);
+        } else if (project.stat) {
+            const { icon, value } = project.stat;
+            const statContainer = document.createElement("div");
+            statContainer.className = "modrinth-stats";
+            statContainer.innerHTML = `
+                <div class="modrinth-stat">
+                    <i class="${icon}"></i>
+                    <span class="modrinth-value">${value}</span>
+                </div>
+            `;
+
+            cardBottomContainer.appendChild(statContainer);
         }
 
         cardContainer.appendChild(card);

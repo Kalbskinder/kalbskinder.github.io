@@ -20,7 +20,11 @@ const PROJECTS = [
             { text: "TypeScript", color: "green" },
             { text: "Java", color: "green" },
             { text: "Minecraft", color: "blue" }
-        ]
+        ],
+        stat: {
+            icon: "bi bi-people",
+            value: "1"
+        }
     },
     {
         title: "PluginWizard-Core",
@@ -43,7 +47,11 @@ const PROJECTS = [
             { text: "Java", color: "green" },
             { text: "Library", color: "yellow" },
             { text: "Minecraft", color: "blue" }
-        ]
+        ],
+        stat: {
+            icon: "bi bi-star",
+            value: "2"
+        }
     },
     {
         title: "Patient-Zero",
@@ -86,5 +94,19 @@ const PROJECTS = [
             { text: "PaperMC", color: "blue" }
         ],
         slug: "mob-health"
+    },
+    {
+        title: "Crumb Lobby",
+        description: "A lightweight and easy-to-configure lobby plugin with all essential features.",
+        image: "https://cdn.modrinth.com/data/b5si1ZrM/443bdbde014369fffb07b6491970340ed8c4dbbb_96.webp",
+        downloadLink: "https://modrinth.com/plugin/crumb-lobby",
+        sourceLink: "https://github.com/Crumb-Network/Crumb-Lobby",
+        overrideButtons: false,
+        tags: [
+            { text: "Java", color: "green" },
+            { text: "Minecraft", color: "blue" },
+            { text: "PaperMC", color: "blue" }
+        ],
+        slug: "crumb-lobby"
     }
 ];
