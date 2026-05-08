@@ -99,15 +99,14 @@ function createButton(buttonElement, config, fallback) {
 
     buttonElement.querySelector("span").textContent = config.text;
     const iconElement = buttonElement.querySelector("i");
-    iconElement.setAttribute("data-lucide", config.icon || fallback.icon);
     classesToAdd.forEach(cls => iconElement.classList.add(cls));
     buttonElement.href = config.href || fallback.href;
     buttonElement.target = config.openInNewTab ? "_blank" : "_self";
     buttonElement.rel = config.openInNewTab ? "noreferrer" : "";
 }
 
-function renderProjects() {
-    PROJECTS.forEach((project) => {
+async function renderProjects() {
+    for (const project of PROJECTS) {
         const card = cardTemplate.content.firstElementChild.cloneNode(true);
         const titleElement = card.querySelector(".card-header");
         const descriptionElement = card.querySelector(".card-description");
@@ -115,6 +114,7 @@ function renderProjects() {
         const topButton = card.querySelector(".top-button");
         const bottomButton = card.querySelector(".bottom-button");
         const tagsContainer = card.querySelector(".card-tags");
+        const cardBottomContainer = card.querySelector(".card-bottom");
 
         titleElement.textContent = project.title;
         descriptionElement.textContent = project.description;
@@ -154,8 +154,76 @@ function renderProjects() {
             tagsContainer.appendChild(tagElement);
         });
 
+        if (project.slug) {
+            const { downloads, likes } = await getModrinthStats(project.slug);
+            const modrinthStatsContainer = document.createElement("div");
+            modrinthStatsContainer.className = "modrinth-stats";
+            modrinthStatsContainer.innerHTML = `
+                <div class="modrinth-stat">
+                    <i class="bi bi-download"></i>
+                    <span class="modrinth-downloads">${downloads}</span>
+                </div>
+                <div class="modrinth-stat">
+                    <i class="bi bi-heart"></i>
+                    <span class="modrinth-likes">${likes}</span>
+                </div>
+            `;
+
+            cardBottomContainer.appendChild(modrinthStatsContainer);
+        }
+
         cardContainer.appendChild(card);
-    });
+    }
+}
+
+async function getModrinthStats(slug) {
+    const API_URL = `https://api.modrinth.com/v2/project/${slug}`;
+
+    const existingStats = localStorage.getItem(`modrinth-stats-${slug}`);
+    if (existingStats) {
+        try {
+            const parsed = JSON.parse(existingStats);
+            const timeCashed = parsed.timestamp;
+            const now = Date.now();
+
+            // cache for 1 hour
+            if (now - timeCashed < 3600000) {
+                return {
+                    downloads: parsed.downloads,
+                    likes: parsed.likes
+                };
+            }
+        } catch (error) {
+            console.warn(`Failed to parse cached stats for ${slug}:`, error);
+            localStorage.removeItem(`modrinth-stats-${slug}`);
+        }
+    }
+    
+    try {
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch stats for ${slug}: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        localStorage.setItem(`modrinth-stats-${slug}`, JSON.stringify({
+            timestamp: Date.now(),
+            downloads: data.downloads || 0,
+            likes: data.followers || 0
+        }));
+
+        return {
+            downloads: data.downloads || 0,
+            likes: data.followers || 0
+        };
+    } catch (error) {
+        console.error(error);
+        return {
+            downloads: "N/A",
+            likes: "N/A"
+        };
+    }
 }
 
 initializeTheme();

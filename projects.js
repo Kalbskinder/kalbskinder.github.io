@@ -9,7 +9,7 @@ const PROJECTS = [
         topButton: {
             openInNewTab: false,
             text: "Coming Soon",
-            icon: "clock-3"
+            icon: "bi bi-clock"
         },
         bottomButton: {
             openInNewTab: true,
@@ -56,7 +56,8 @@ const PROJECTS = [
             { text: "Java", color: "green" },
             { text: "Minecraft", color: "blue" },
             { text: "PaperMC", color: "blue" }
-        ]
+        ],
+        slug: "patient-zero"
     },
     {
         title: "Lobby Parkour",
@@ -69,6 +70,21 @@ const PROJECTS = [
             { text: "Java", color: "green" },
             { text: "Minecraft", color: "blue" },
             { text: "PaperMC", color: "blue" }
-        ]
+        ],
+        slug: "lobby-parkour"
+    },
+    {
+        title: "Mob Health",
+        description: "A customizable plugin that displays the health count of a mob above their head",
+        image: "https://cdn.modrinth.com/data/VLCY8WJF/e3fc91f78b0b84c22d2df1252edb3e2099ea7444.png",
+        downloadLink: "https://modrinth.com/plugin/mob-health",
+        sourceLink: "https://github.com/Kalbskinder/MobHealthV2",
+        overrideButtons: false,
+        tags: [
+            { text: "Java", color: "green" },
+            { text: "Minecraft", color: "blue" },
+            { text: "PaperMC", color: "blue" }
+        ],
+        slug: "mob-health"
     }
 ];
