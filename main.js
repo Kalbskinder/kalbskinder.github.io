@@ -39,20 +39,6 @@ function initSkinViewer() {
         skinViewer.width = nextSize;
         skinViewer.height = nextSize;
     });
-
-    skinViewerElement.addEventListener("mouseenter", () => {
-        if (skinViewer) {
-            skinViewer.animation = new skinview3d.WaveAnimation();
-            skinViewer.animation.speed = 5;
-        }
-    });
-
-    skinViewerElement.addEventListener("mouseleave", () => {
-        if (skinViewer) {
-            skinViewer.animation = new skinview3d.WalkingAnimation();
-            skinViewer.animation.speed = 0.7;
-        }
-    });
 }
 
 function setTheme(themeName) {
