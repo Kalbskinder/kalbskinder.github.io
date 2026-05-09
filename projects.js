@@ -54,18 +54,18 @@ const PROJECTS = [
         }
     },
     {
-        title: "Patient-Zero",
-        description: "A Minecraft plugin that brings Hypixel-style infection gameplay to your server.",
+        title: "Infection",
+        description: "A Minecraft plugin that adds the popular Infection minigame to your server.",
         image: "https://cdn.modrinth.com/data/5RQMBtQG/751ef8394583803f190a4e8d8cf9e9eb9e344406.png",
-        downloadLink: "https://modrinth.com/plugin/patient-zero",
-        sourceLink: "https://github.com/Kalbskinder/Patient-Zero",
+        downloadLink: "https://modrinth.com/plugin/infection-minigame",
+        sourceLink: "https://github.com/Kalbskinder/Infection",
         overrideButtons: false,
         tags: [
             { text: "Java", color: "green" },
             { text: "Minecraft", color: "blue" },
             { text: "PaperMC", color: "blue" }
         ],
-        slug: "patient-zero"
+        slug: "infection-minigame"
     },
     {
         title: "Lobby Parkour",
