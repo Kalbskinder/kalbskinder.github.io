@@ -191,26 +191,6 @@ async function renderProjects() {
 
 async function getModrinthStats(slug) {
     const API_URL = `https://api.modrinth.com/v2/project/${slug}`;
-
-    const existingStats = localStorage.getItem(`modrinth-stats-${slug}`);
-    if (existingStats) {
-        try {
-            const parsed = JSON.parse(existingStats);
-            const timeCashed = parsed.timestamp;
-            const now = Date.now();
-
-            // cache for 1 hour
-            if (now - timeCashed < 3600000) {
-                return {
-                    downloads: parsed.downloads,
-                    likes: parsed.likes
-                };
-            }
-        } catch (error) {
-            console.warn(`Failed to parse cached stats for ${slug}:`, error);
-            localStorage.removeItem(`modrinth-stats-${slug}`);
-        }
-    }
     
     try {
         const response = await fetch(API_URL);
@@ -219,12 +199,6 @@ async function getModrinthStats(slug) {
         }
 
         const data = await response.json();
-
-        localStorage.setItem(`modrinth-stats-${slug}`, JSON.stringify({
-            timestamp: Date.now(),
-            downloads: data.downloads || 0,
-            likes: data.followers || 0
-        }));
 
         return {
             downloads: data.downloads || 0,
