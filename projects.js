@@ -21,10 +21,16 @@ const PROJECTS = [
             { text: "Java", color: "green" },
             { text: "Minecraft", color: "blue" }
         ],
-        stat: {
-            icon: "bi bi-people",
-            value: "1"
-        }
+        stats: [
+            {
+                icon: "bi bi-people",
+                value: "2"
+            },
+            {
+                icon: "bi bi-star",
+                value: "4"
+            }
+        ]
     },
     {
         title: "PluginWizard-Core",
@@ -48,10 +54,12 @@ const PROJECTS = [
             { text: "Library", color: "yellow" },
             { text: "Minecraft", color: "blue" }
         ],
-        stat: {
-            icon: "bi bi-star",
-            value: "2"
-        }
+        stats: [
+            {
+                icon: "bi bi-star",
+                value: "2"
+            }
+        ]
     },
     {
         title: "Mob Health",

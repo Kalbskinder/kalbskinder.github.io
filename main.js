@@ -171,16 +171,20 @@ async function renderProjects() {
             `;
 
             cardBottomContainer.appendChild(modrinthStatsContainer);
-        } else if (project.stat) {
-            const { icon, value } = project.stat;
+        } else if (project.stat || project.stats) {
+            const stats = project.stats || [project.stat];
             const statContainer = document.createElement("div");
             statContainer.className = "modrinth-stats";
-            statContainer.innerHTML = `
-                <div class="modrinth-stat">
+
+            stats.filter(Boolean).forEach(({ icon, value }) => {
+                const statItem = document.createElement("div");
+                statItem.className = "modrinth-stat";
+                statItem.innerHTML = `
                     <i class="${icon}"></i>
                     <span class="modrinth-value">${value}</span>
-                </div>
-            `;
+                `;
+                statContainer.appendChild(statItem);
+            });
 
             cardBottomContainer.appendChild(statContainer);
         }
