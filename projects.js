@@ -54,18 +54,18 @@ const PROJECTS = [
         }
     },
     {
-        title: "Infection",
-        description: "A Minecraft plugin that adds the popular Infection minigame to your server.",
-        image: "https://cdn.modrinth.com/data/5RQMBtQG/751ef8394583803f190a4e8d8cf9e9eb9e344406.png",
-        downloadLink: "https://modrinth.com/plugin/infection-minigame",
-        sourceLink: "https://github.com/Kalbskinder/Infection",
+        title: "Mob Health",
+        description: "A customizable plugin that displays the health count of a mob above their head",
+        image: "https://cdn.modrinth.com/data/VLCY8WJF/e3fc91f78b0b84c22d2df1252edb3e2099ea7444.png",
+        downloadLink: "https://modrinth.com/plugin/mob-health",
+        sourceLink: "https://github.com/Kalbskinder/MobHealthV2",
         overrideButtons: false,
         tags: [
             { text: "Java", color: "green" },
             { text: "Minecraft", color: "blue" },
             { text: "PaperMC", color: "blue" }
         ],
-        slug: "infection-minigame"
+        slug: "mob-health"
     },
     {
         title: "Lobby Parkour",
@@ -82,18 +82,18 @@ const PROJECTS = [
         slug: "lobby-parkour"
     },
     {
-        title: "Mob Health",
-        description: "A customizable plugin that displays the health count of a mob above their head",
-        image: "https://cdn.modrinth.com/data/VLCY8WJF/e3fc91f78b0b84c22d2df1252edb3e2099ea7444.png",
-        downloadLink: "https://modrinth.com/plugin/mob-health",
-        sourceLink: "https://github.com/Kalbskinder/MobHealthV2",
+        title: "Infection",
+        description: "A Minecraft plugin that adds the popular Infection minigame to your server.",
+        image: "https://cdn.modrinth.com/data/5RQMBtQG/751ef8394583803f190a4e8d8cf9e9eb9e344406.png",
+        downloadLink: "https://modrinth.com/plugin/infection-minigame",
+        sourceLink: "https://github.com/Kalbskinder/Infection",
         overrideButtons: false,
         tags: [
             { text: "Java", color: "green" },
             { text: "Minecraft", color: "blue" },
             { text: "PaperMC", color: "blue" }
         ],
-        slug: "mob-health"
+        slug: "infection-minigame"
     },
     {
         title: "Crumb Lobby",
