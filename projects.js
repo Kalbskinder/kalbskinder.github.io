@@ -19,7 +19,8 @@ const PROJECTS = [
         tags: [
             { text: "TypeScript", color: "green" },
             { text: "Java", color: "green" },
-            { text: "Minecraft", color: "blue" }
+            { text: "Kotlin", color: "green" },
+            { text: "Minecraft", color: "yellow" }
         ],
         stats: [
             {
