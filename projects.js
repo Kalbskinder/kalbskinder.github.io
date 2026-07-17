@@ -29,7 +29,7 @@ const PROJECTS = [
             },
             {
                 icon: "bi bi-star",
-                value: "4"
+                value: "6"
             }
         ]
     },
