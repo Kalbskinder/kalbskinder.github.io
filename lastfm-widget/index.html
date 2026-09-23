@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last.fm Widget</title>
+    <link rel="stylesheet" href="./widget.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <a id="lastfm-widget" target="_blank" rel="noopener"></a>
+
+    <script src="./widget.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        const username = params.get("username");
+        const themeParam = (params.get("theme") || "auto").toLowerCase();
+        const theme = ["light", "dark", "auto"].includes(themeParam) ? themeParam : "auto";
+
+        // optional live refresh: ?refresh=0 disables it, otherwise ms (default 10s).
+        const refreshRaw = params.get("refresh");
+        const refresh = refreshRaw === null ? 10000 : Number(refreshRaw);
+
+        if (!username) {
+            renderError("Missing ?username= parameter.");
+        } else {
+            loadWidget(theme, username, Number.isFinite(refresh) ? refresh : 10000);
+        }
+    </script>
+</body>
+</html>
