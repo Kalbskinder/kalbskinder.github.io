@@ -6,6 +6,7 @@ const timeElement = document.getElementById("time");
 const cardContainer = document.getElementById("card-container");
 const cardTemplate = document.getElementById("project-card-template");
 const skinCanvas = document.getElementById("skin-viewer");
+const lastfmFrame = document.getElementById("lastfm-frame");
 const workNote = document.getElementById("work-note");
 const publishedFact = document.getElementById("fact-published");
 
@@ -25,6 +26,22 @@ function setTheme(theme) {
     const isDark = resolved === "dark";
     themeLabel.textContent = isDark ? "light" : "dark";
     themeIcon.className = isDark ? "bi bi-sun" : "bi bi-moon";
+
+    syncWidgetTheme(resolved);
+}
+
+function syncWidgetTheme(theme) {
+    if (!lastfmFrame) {
+        return;
+    }
+
+    const url = new URL(lastfmFrame.src);
+    if (url.searchParams.get("theme") === theme) {
+        return;
+    }
+
+    url.searchParams.set("theme", theme);
+    lastfmFrame.src = url.toString();
 }
 
 function initTheme() {
