@@ -13,8 +13,7 @@ const PROJECTS = [
         },
         tags: ["Java", "TypeScript", "Minecraft", "Minestom"],
         stats: [
-            { icon: "bi bi-people", value: "2" },
-            { icon: "bi bi-star", value: "6" }
+            { icon: "bi bi-people", value: "5" },
         ]
     },
     {
