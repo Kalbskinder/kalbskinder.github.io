@@ -6,8 +6,6 @@
     font-display: swap;
 }
 
-/* ---------------------------------------------------------------- tokens */
-
 :root {
     --bg: #faf9f7;
     --bg-sunken: #f2f0ec;
@@ -15,7 +13,7 @@
     --surface-alt: #fbfaf8;
     --text: #17161a;
     --muted: #6b6870;
-    --faint: #94909a;
+    --faint: #7a777f;
     --line: #e5e2dc;
     --line-strong: #d2cec6;
     --accent: #c0102b;
@@ -30,20 +28,18 @@
 
 html[data-theme="dark"] {
     --bg: #101114;
-    --bg-sunken: #0b0c0e;
+    --bg-sunken: #121315;
     --surface: #17181c;
     --surface-alt: #1b1d21;
     --text: #f1f1f3;
     --muted: #9b9aa4;
-    --faint: #6f6e78;
+    --faint: #9b9aa9;
     --line: #26282e;
     --line-strong: #383a42;
     --accent: #ff4d67;
     --accent-soft: #ff4d6718;
     --grid: #ffffff0a;
 }
-
-/* ------------------------------------------------------------------ base */
 
 *,
 *::before,
@@ -67,7 +63,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Faint block grid over the hero only. One texture, no glow. */
 body::before {
     content: "";
     position: absolute;
@@ -139,7 +134,6 @@ a {
     margin-inline: auto;
 }
 
-/* Pixel wordmark — smoothing off so the bitmap edges stay square. */
 .brand {
     font-family: "Minecraft", var(--mono);
     font-size: 1rem;
@@ -149,8 +143,6 @@ a {
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: unset;
 }
-
-/* ---------------------------------------------------------------- topbar */
 
 .topbar {
     position: sticky;
@@ -207,8 +199,6 @@ a {
     color: var(--text);
     border-color: var(--accent);
 }
-
-/* ------------------------------------------------------------------ hero */
 
 .hero {
     display: grid;
@@ -329,8 +319,6 @@ a {
     color: var(--faint);
 }
 
-/* -------------------------------------------------------------- sections */
-
 .section {
     padding-bottom: clamp(3rem, 7vw, 5rem);
 }
@@ -363,8 +351,6 @@ a {
     font-size: 0.75rem;
     color: var(--faint);
 }
-
-/* ----------------------------------------------------------------- stack */
 
 .stack-grid {
     display: grid;
@@ -427,8 +413,6 @@ a {
     color: var(--muted);
 }
 
-/* -------------------------------------------------------------- projects */
-
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -464,7 +448,6 @@ a {
     border-radius: var(--radius);
     object-fit: cover;
     background: var(--bg-sunken);
-    image-rendering: pixelated;
 }
 
 .card-text {
@@ -557,7 +540,10 @@ a {
     gap: 0.3rem;
 }
 
-/* ----------------------------------------------------------------- about */
+a.link {
+    color: var(--accent);
+    text-decoration: underline;
+}
 
 .about {
     display: grid;
@@ -572,16 +558,6 @@ a {
     max-width: 58ch;
     color: var(--muted);
     font-size: 0.95rem;
-}
-
-.about-copy a {
-    color: var(--text);
-    text-decoration: none;
-    border-bottom: 1px solid var(--accent);
-}
-
-.about-copy a:hover {
-    color: var(--accent);
 }
 
 .facts {
@@ -608,8 +584,6 @@ a {
     margin: 0;
     text-align: right;
 }
-
-/* ---------------------------------------------------------------- footer */
 
 .footer {
     border-top: 1px solid var(--line);
@@ -645,8 +619,6 @@ a {
 .footer-top:hover {
     color: var(--accent);
 }
-
-/* ------------------------------------------------------------ responsive */
 
 @media (max-width: 900px) {
     .hero {
@@ -706,4 +678,22 @@ a {
     * {
         transition-duration: 0.01ms !important;
     }
+}
+
+
+.widget-container {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.2rem;
+}
+
+.widget-container span {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--faint);
+    padding-right: 0.2rem;
 }

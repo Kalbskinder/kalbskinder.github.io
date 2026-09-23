@@ -17,7 +17,13 @@ const LANGUAGE_TAGS = new Set(["java", "kotlin", "typescript"]);
 
 /* ----------------------------------------------------------------- theme */
 
+function loadMusicWidget() {
+    const theme = localStorage.getItem(THEME_KEY) || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    loadWidget(theme, "kalbskinder", 10000);
+}
+
 function setTheme(theme) {
+    loadMusicWidget();
     const resolved = theme === "dark" ? "dark" : "light";
     html.setAttribute("data-theme", resolved);
     localStorage.setItem(THEME_KEY, resolved);
@@ -246,3 +252,4 @@ updateTime();
 setInterval(updateTime, 30_000);
 initSkinViewer();
 renderProjects();
+loadMusicWidget();

@@ -7,10 +7,14 @@
     <meta name="description" content="Kalbskinder — developer from Zürich building Minecraft plugins, JVM libraries and desktop tools.">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles/widget.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="widget-container">
+        <span>Available on: <a href="https://github.com/Kalbskinder/lastfm-widget" target="_blank" rel="noopener noreferrer">Kalbskinder/lastfm-widget</a></span>
+        <div id="lastfm-widget"></div>
+    </div>
 
     <header class="topbar">
         <div class="topbar-inner">
@@ -35,9 +39,8 @@
                 <p class="eyebrow">Zürich, Switzerland</p>
                 <h1>Kalbskinder</h1>
                 <p class="lede">
-                    I build Minecraft server plugins, JVM libraries and the desktop tools that
-                    sit around them. Mostly open source, mostly because the thing I needed
-                    didn&rsquo;t exist yet.
+                    I build Minecraft servers & plugins, websites, and developer tools that make complex tasks simpler and more enjoyable. 
+                    Most of my work is open source.
                 </p>
 
                 <dl class="meta-row">
@@ -51,7 +54,7 @@
                     </div>
                     <div class="meta-pill">
                         <dt><i class="bi bi-terminal" aria-hidden="true"></i> writes</dt>
-                        <dd>Java / Kotlin / TS</dd>
+                        <dd>Java / Kotlin / TypeScript</dd>
                     </div>
                 </dl>
 
@@ -85,7 +88,7 @@
                 <span class="section-index">01</span>
                 <h2>Stack</h2>
                 <span class="section-rule" aria-hidden="true"></span>
-                <span class="section-note">what I actually use</span>
+                <span class="section-note">technologies I use</span>
             </div>
 
             <div class="stack-grid">
@@ -95,30 +98,26 @@
                         <span class="stack-since">first language</span>
                     </header>
                     <p>
-                        The one I know best. Minecraft server plugins, small backend services,
-                        and a library published to Maven Central.
+                        The language I've used the longest. Building Minecraft servers with <a href="https://minestom.net" target="_blank" class="link">Minestom</a>, plugins with <a href="https://papermc.io" target="_blank" class="link">PaperMC</a>, and working on enterprise APIs and microservices with Spring Boot.
                     </p>
                     <ul class="chips">
-                        <li>Spring</li>
+                        <li>Minestom</li>
                         <li>PaperMC</li>
-                        <li>Gradle</li>
-                        <li>Maven</li>
+                        <li>Spring</li>
                     </ul>
                 </article>
 
                 <article class="stack-card">
                     <header class="stack-card-head">
                         <h3>Kotlin</h3>
-                        <span class="stack-since">on the JVM</span>
+                        <span class="stack-since">still learning</span>
                     </header>
                     <p>
-                        Same platform, far less ceremony. I reach for it when a Java file starts
-                        turning into mostly boilerplate.
+                        Used Kotlin for building APIs and microservices with Spring Boot and Ktor, as well as developing an Android application. Currently continuing to deepen my knowledge of the language and its ecosystem.
                     </p>
                     <ul class="chips">
                         <li>Spring</li>
-                        <li>PaperMC</li>
-                        <li>Gradle</li>
+                        <li>Ktor</li>
                     </ul>
                 </article>
 
@@ -128,8 +127,7 @@
                         <span class="stack-since">anything with a UI</span>
                     </header>
                     <p>
-                        Web frontends and cross&#8209;platform desktop apps — the interface half of
-                        the tools whose engines I write on the JVM.
+                        Web frontends and desktop apps with React, Vite and Electron.
                     </p>
                     <ul class="chips">
                         <li>React</li>
@@ -157,25 +155,17 @@
                 <span class="section-index">03</span>
                 <h2>About</h2>
                 <span class="section-rule" aria-hidden="true"></span>
-                <span class="section-note">the short version</span>
+                <span class="section-note">the compressed version</span>
             </div>
 
             <div class="about">
                 <div class="about-copy">
                     <p>
-                        I&rsquo;m a <span class="js-age">--</span>&#8209;year&#8209;old developer from Zürich.
-                        I got into programming through Minecraft — wanting a server to do something
-                        it couldn&rsquo;t — and never really stopped building tools for other people
-                        who want the same thing.
-                    </p>
-                    <p>
-                        These days that means plugins, a plugin&#8209;building library, and
-                        <a href="https://github.com/PluginWizard" target="_blank" rel="noreferrer">PluginWizard</a>,
-                        an attempt at letting people make plugins without writing any code at all.
-                    </p>
-                    <p>
-                        Almost everything I ship is public. If something of mine is broken, the
-                        issue tracker is the fastest way to reach me.
+                        I'm a <span class="js-age">--</span>-year-old developer from Zürich.
+                        I started programming through Minecraft, where I began making mods, plugins and experimenting with my own ideas. 
+                        Over time, that hobby grew into a passion for software development. 
+                        I enjoy building things, solving problems, and learning something new with every project.
+
                     </p>
                 </div>
 
@@ -186,15 +176,15 @@
                     </div>
                     <div class="fact">
                         <dt>Focus</dt>
-                        <dd>JVM &amp; developer tooling</dd>
+                        <dd>Minecraft, JVM & developer tooling</dd>
                     </div>
                     <div class="fact">
                         <dt>Published</dt>
-                        <dd id="fact-published">Modrinth &amp; Maven Central</dd>
+                        <dd id="fact-published">Modrinth & Maven Central</dd>
                     </div>
                     <div class="fact">
                         <dt>Open to</dt>
-                        <dd>Collaboration &amp; bug reports</dd>
+                        <dd>Collaboration & bug reports</dd>
                     </div>
                 </dl>
             </div>
@@ -204,7 +194,6 @@
     <footer class="footer">
         <div class="footer-inner">
             <span class="brand">kalbskinder</span>
-            <span class="footer-note">No framework. Just HTML, CSS and a bit of JavaScript.</span>
             <a class="footer-top" href="#top">back to top <i class="bi bi-arrow-up" aria-hidden="true"></i></a>
         </div>
     </footer>
@@ -226,8 +215,8 @@
                         <span>Modrinth</span>
                     </a>
                     <a class="card-button bottom-button" href="#" target="_blank" rel="noreferrer">
-                        <i class="bi bi-code-slash" aria-hidden="true"></i>
-                        <span>Source</span>
+                        <i class="bi bi-github" aria-hidden="true"></i>
+                        <span>GitHub</span>
                     </a>
                 </div>
                 <div class="card-stats"></div>
@@ -236,7 +225,8 @@
     </template>
 
     <script src="https://unpkg.com/skinview3d@3.4.2/bundles/skinview3d.bundle.js"></script>
-    <script src="./projects.js"></script>
-    <script src="./main.js"></script>
+    <script src="./js/projects.js"></script>
+    <script src="./js/widget.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>
