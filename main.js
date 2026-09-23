@@ -1,231 +1,248 @@
-const htmlElement = document.documentElement;
-const themeToggleButton = document.getElementById("theme-toggle");
+const html = document.documentElement;
+const themeToggle = document.getElementById("theme-toggle");
 const themeLabel = document.getElementById("theme-label");
+const themeIcon = themeToggle.querySelector("i");
 const timeElement = document.getElementById("time");
-const ageElement = document.getElementById("age");
 const cardContainer = document.getElementById("card-container");
 const cardTemplate = document.getElementById("project-card-template");
-const skinViewerElement = document.getElementById("skin-viewer");
-const themeStorageKey = "kalbskinder-theme";
+const skinCanvas = document.getElementById("skin-viewer");
+const workNote = document.getElementById("work-note");
+const publishedFact = document.getElementById("fact-published");
 
-let skinViewer;
+const THEME_KEY = "kalbskinder-theme";
+const BIRTH_DATE = new Date(2008, 6, 26);
 
-function initSkinViewer() {
-    skinViewer = new skinview3d.SkinViewer({
-        canvas: skinViewerElement,
-        width: skinViewerElement.clientWidth - 80,
-        height: skinViewerElement.clientWidth - 80,
-        skin: "./images/skin.png",
-        cape: "./images/cape.png"
-    });
+/** Tags that name a language get the accent treatment; the rest stay quiet. */
+const LANGUAGE_TAGS = new Set(["java", "kotlin", "typescript"]);
 
-    skinViewer.fov = 60;
-    skinViewer.zoom = 0.72;
-    skinViewer.autoRotate = false;
+/* ----------------------------------------------------------------- theme */
 
-    skinViewer.animation = new skinview3d.WalkingAnimation();
-    skinViewer.animation.speed = 0.7;
+function setTheme(theme) {
+    const resolved = theme === "dark" ? "dark" : "light";
+    html.setAttribute("data-theme", resolved);
+    localStorage.setItem(THEME_KEY, resolved);
 
-    skinViewer.nameTag = "Kalbskinder";
-
-
-    window.addEventListener("resize", () => {
-        if (!skinViewer) {
-            console.warn("Skin viewer not initialized. Cannot resize.");
-            return;
-        }
-
-        const nextSize = Math.min(340, Math.max(220, skinViewerElement.clientWidth));
-        skinViewer.width = nextSize;
-        skinViewer.height = nextSize;
-    });
+    const isDark = resolved === "dark";
+    themeLabel.textContent = isDark ? "light" : "dark";
+    themeIcon.className = isDark ? "bi bi-sun" : "bi bi-moon";
 }
 
-function setTheme(themeName) {
-    const resolvedTheme = themeName === "dark" ? "dark" : "light";
-    htmlElement.setAttribute("data-theme", resolvedTheme);
-    localStorage.setItem(themeStorageKey, resolvedTheme);
-
-    const isDark = resolvedTheme === "dark";
-    themeLabel.textContent = isDark ? "Light" : "Dark";
-
-    const existingIcon = themeToggleButton.querySelector("svg, i");
-    if (existingIcon) {
-        existingIcon.remove();
-    }
-
-    const iconPlaceholder = document.createElement("i");
-    iconPlaceholder.setAttribute("data-lucide", isDark ? "sun" : "moon");
-    themeToggleButton.insertBefore(iconPlaceholder, themeLabel);
-    lucide.createIcons();
+function initTheme() {
+    const stored = localStorage.getItem(THEME_KEY);
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setTheme(stored || (prefersDark ? "dark" : "light"));
 }
 
-function initializeTheme() {
-    const storedTheme = localStorage.getItem(themeStorageKey);
-    const preferredDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setTheme(storedTheme || (preferredDark ? "dark" : "light"));
-}
+themeToggle.addEventListener("click", () => {
+    setTheme(html.getAttribute("data-theme") === "dark" ? "light" : "dark");
+});
+
+/* ------------------------------------------------------------ small bits */
 
 function updateTime() {
-    const newTime = new Date().toLocaleString("de-CH", {
+    timeElement.textContent = new Date().toLocaleTimeString("de-CH", {
         timeZone: "Europe/Zurich",
         hour: "2-digit",
         minute: "2-digit"
     });
-
-    timeElement.textContent = newTime;
 }
 
-function updateAge() {
-    const birthDate = new Date(2008, 6, 26);
+function renderAge() {
     const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
+    let age = today.getFullYear() - BIRTH_DATE.getFullYear();
+    const monthDiff = today.getMonth() - BIRTH_DATE.getMonth();
 
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < BIRTH_DATE.getDate())) {
         age -= 1;
     }
 
-    ageElement.textContent = `${age}yo`;
+    document.querySelectorAll(".js-age").forEach((element) => {
+        element.textContent = age;
+    });
 }
 
-function createButton(buttonElement, config, fallback) {
-    if (!config || !config.text) {
-        buttonElement.style.display = "none";
+/* ----------------------------------------------------------- skin viewer */
+
+function skinViewerSize() {
+    const available = skinCanvas.parentElement.clientWidth;
+    return Math.round(Math.min(300, Math.max(200, available)));
+}
+
+function initSkinViewer() {
+    // If the viewer library fails to load, drop the whole panel rather than
+    // leaving a blank canvas and a "drag to spin" hint behind.
+    if (typeof skinview3d === "undefined") {
+        skinCanvas.parentElement.remove();
         return;
     }
 
-    const classesToAdd = config.icon.split(" ").filter(cls => cls.trim() !== "");
+    const size = skinViewerSize();
+    const viewer = new skinview3d.SkinViewer({
+        canvas: skinCanvas,
+        width: size,
+        height: size,
+        skin: "./images/skin.png",
+        cape: "./images/cape.png"
+    });
 
-    buttonElement.querySelector("span").textContent = config.text;
-    const iconElement = buttonElement.querySelector("i");
-    iconElement.className = "";
-    classesToAdd.forEach(cls => iconElement.classList.add(cls));
-    buttonElement.href = config.href || fallback.href;
-    buttonElement.target = config.openInNewTab ? "_blank" : "_self";
-    buttonElement.rel = config.openInNewTab ? "noreferrer" : "";
-}
+    viewer.fov = 60;
+    viewer.zoom = 0.78;
+    viewer.autoRotate = false;
+    viewer.nameTag = "Kalbskinder";
+    viewer.animation = new skinview3d.WalkingAnimation();
+    viewer.animation.speed = 0.7;
 
-async function renderProjects() {
-    for (const project of PROJECTS) {
-        const card = cardTemplate.content.firstElementChild.cloneNode(true);
-        const titleElement = card.querySelector(".card-header");
-        const descriptionElement = card.querySelector(".card-description");
-        const imageElement = card.querySelector(".card-image");
-        const topButton = card.querySelector(".top-button");
-        const bottomButton = card.querySelector(".bottom-button");
-        const tagsContainer = card.querySelector(".card-tags");
-        const cardBottomContainer = card.querySelector(".card-bottom");
-
-        titleElement.textContent = project.title;
-        descriptionElement.textContent = project.description;
-
-        imageElement.src = project.image;
-        imageElement.alt = `${project.title} project image`;
-
-        topButton.href = project.downloadLink;
-        bottomButton.href = project.sourceLink;
-
-        if (project.overrideButtons) {
-            createButton(topButton, {
-                text: project.topButton.text,
-                icon: project.topButton.icon,
-                href: project.downloadLink,
-                openInNewTab: project.topButton.openInNewTab
-            }, {
-                icon: "download",
-                href: project.downloadLink
-            });
-
-            createButton(bottomButton, {
-                text: project.bottomButton.text,
-                icon: project.bottomButton.icon,
-                href: project.sourceLink,
-                openInNewTab: project.bottomButton.openInNewTab
-            }, {
-                icon: "code-2",
-                href: project.sourceLink
-            });
-        }
-
-        project.tags.forEach((tag) => {
-            const tagElement = document.createElement("span");
-            tagElement.className = `card-tag tag-${tag.color}`;
-            tagElement.textContent = tag.text;
-            tagsContainer.appendChild(tagElement);
-        });
-
-        if (project.slug) {
-            const { downloads, likes } = await getModrinthStats(project.slug);
-            const modrinthStatsContainer = document.createElement("div");
-            modrinthStatsContainer.className = "modrinth-stats";
-            modrinthStatsContainer.innerHTML = `
-                <div class="modrinth-stat">
-                    <i class="bi bi-download"></i>
-                    <span class="modrinth-downloads">${downloads}</span>
-                </div>
-                <div class="modrinth-stat">
-                    <i class="bi bi-heart"></i>
-                    <span class="modrinth-likes">${likes}</span>
-                </div>
-            `;
-
-            cardBottomContainer.appendChild(modrinthStatsContainer);
-        } else if (project.stat || project.stats) {
-            const stats = project.stats || [project.stat];
-            const statContainer = document.createElement("div");
-            statContainer.className = "modrinth-stats";
-
-            stats.filter(Boolean).forEach(({ icon, value }) => {
-                const statItem = document.createElement("div");
-                statItem.className = "modrinth-stat";
-                statItem.innerHTML = `
-                    <i class="${icon}"></i>
-                    <span class="modrinth-value">${value}</span>
-                `;
-                statContainer.appendChild(statItem);
-            });
-
-            cardBottomContainer.appendChild(statContainer);
-        }
-
-        cardContainer.appendChild(card);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        viewer.animation.paused = true;
     }
+
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            const next = skinViewerSize();
+            viewer.width = next;
+            viewer.height = next;
+        }, 120);
+    });
 }
+
+/* -------------------------------------------------------------- projects */
 
 async function getModrinthStats(slug) {
-    const API_URL = `https://api.modrinth.com/v2/project/${slug}`;
-    
     try {
-        const response = await fetch(API_URL);
+        const response = await fetch(`https://api.modrinth.com/v2/project/${slug}`);
         if (!response.ok) {
-            throw new Error(`Failed to fetch stats for ${slug}: ${response.statusText}`);
+            throw new Error(`Modrinth returned ${response.status} for ${slug}`);
         }
 
         const data = await response.json();
-
-        return {
-            downloads: data.downloads || 0,
-            likes: data.followers || 0
-        };
+        return { downloads: data.downloads ?? 0, likes: data.followers ?? 0 };
     } catch (error) {
         console.error(error);
-        return {
-            downloads: "N/A",
-            likes: "N/A"
-        };
+        return null;
     }
 }
 
-initializeTheme();
-initSkinViewer();
-updateAge();
-updateTime();
-setInterval(updateTime, 1000);
-renderProjects();
-lucide.createIcons();
+function formatCount(value) {
+    return typeof value === "number" ? value.toLocaleString("en-US") : value;
+}
 
-themeToggleButton.addEventListener("click", () => {
-    const nextTheme = htmlElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
-});
+function renderStats(container, stats) {
+    container.innerHTML = "";
+
+    stats.forEach(({ icon, value }) => {
+        const item = document.createElement("div");
+        item.className = "card-stat";
+
+        const iconElement = document.createElement("i");
+        iconElement.className = icon;
+        iconElement.setAttribute("aria-hidden", "true");
+
+        const valueElement = document.createElement("span");
+        valueElement.textContent = formatCount(value);
+
+        item.append(iconElement, valueElement);
+        container.appendChild(item);
+    });
+}
+
+function applyButton(button, config, fallbackHref) {
+    if (!config || !config.text) {
+        button.remove();
+        return;
+    }
+
+    button.querySelector("span").textContent = config.text;
+    button.querySelector("i").className = config.icon;
+    button.href = config.href || fallbackHref;
+
+    if (config.openInNewTab === false) {
+        button.removeAttribute("target");
+        button.removeAttribute("rel");
+    }
+}
+
+function buildCard(project) {
+    const card = cardTemplate.content.firstElementChild.cloneNode(true);
+    const image = card.querySelector(".card-image");
+    const tagList = card.querySelector(".card-tags");
+    const topButton = card.querySelector(".top-button");
+    const bottomButton = card.querySelector(".bottom-button");
+
+    card.querySelector(".card-header").textContent = project.title;
+    card.querySelector(".card-description").textContent = project.description;
+
+    image.src = project.image;
+    image.alt = `${project.title} icon`;
+
+    topButton.href = project.downloadLink;
+    bottomButton.href = project.sourceLink;
+
+    if (project.overrideButtons) {
+        applyButton(topButton, project.topButton, project.downloadLink);
+        applyButton(bottomButton, project.bottomButton, project.sourceLink);
+    }
+
+    project.tags.forEach((tag) => {
+        const item = document.createElement("li");
+        item.className = "card-tag";
+        if (LANGUAGE_TAGS.has(tag.toLowerCase())) {
+            item.classList.add("is-accent");
+        }
+        item.textContent = tag;
+        tagList.appendChild(item);
+    });
+
+    if (project.stats) {
+        renderStats(card.querySelector(".card-stats"), project.stats);
+    }
+
+    return card;
+}
+
+async function renderProjects() {
+    const published = [];
+
+    PROJECTS.forEach((project) => {
+        const card = buildCard(project);
+        cardContainer.appendChild(card);
+        if (project.slug) {
+            published.push({ slug: project.slug, card });
+        }
+    });
+
+    const results = await Promise.all(published.map(({ slug }) => getModrinthStats(slug)));
+
+    let totalDownloads = 0;
+
+    results.forEach((stats, index) => {
+        const container = published[index].card.querySelector(".card-stats");
+
+        if (!stats) {
+            renderStats(container, [{ icon: "bi bi-dash-circle", value: "unavailable" }]);
+            return;
+        }
+
+        totalDownloads += stats.downloads;
+        renderStats(container, [
+            { icon: "bi bi-download", value: stats.downloads },
+            { icon: "bi bi-heart", value: stats.likes }
+        ]);
+    });
+
+    if (totalDownloads > 0) {
+        const summary = `${formatCount(totalDownloads)} downloads on Modrinth`;
+        workNote.textContent = summary;
+        publishedFact.textContent = summary;
+    }
+}
+
+/* ------------------------------------------------------------------ boot */
+
+initTheme();
+renderAge();
+updateTime();
+setInterval(updateTime, 30_000);
+initSkinViewer();
+renderProjects();
