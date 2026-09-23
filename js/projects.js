@@ -1,0 +1,87 @@
+const PROJECTS = [
+    {
+        title: "Overdye (WIP)",
+        description: "A Minecraft server featuring a custom pvp style gamemode and much more.",
+        image: "./images/overdye.png",
+        downloadLink: "#projects",
+        sourceLink: "#projects",
+        overrideButtons: true,
+        bottomButton: {
+            text: "Coming soon",
+            icon: "bi bi-clock",
+            openInNewTab: true
+        },
+        tags: ["Java", "TypeScript", "Minecraft", "Minestom"],
+        stats: [
+            { icon: "bi bi-people", value: "2" },
+            { icon: "bi bi-star", value: "6" }
+        ]
+    },
+    {
+        title: "PluginWizard",
+        description: "A visual editor that lets anybody build a Minecraft plugin without writing code.",
+        image: "./images/wizard.png",
+        downloadLink: "#projects",
+        sourceLink: "https://github.com/PluginWizard",
+        overrideButtons: true,
+        bottomButton: {
+            text: "GitHub",
+            icon: "bi bi-github",
+            openInNewTab: true
+        },
+        tags: ["TypeScript", "Java", "Kotlin", "Minecraft"],
+        stats: [
+            { icon: "bi bi-people", value: "2" },
+            { icon: "bi bi-star", value: "6" }
+        ]
+    },
+    {
+        title: "PluginWizard-Core",
+        description: "A Java library that takes the boilerplate out of plugin development.",
+        image: "./images/pluginwizard-core.svg",
+        downloadLink: "https://central.sonatype.com/artifact/net.kalbskinder/pluginwizard-core",
+        sourceLink: "https://github.com/PluginWizard/PluginWizard-Core",
+        overrideButtons: true,
+        topButton: {
+            text: "Maven Central",
+            icon: "bi bi-box-seam",
+            openInNewTab: true
+        },
+        bottomButton: {
+            text: "GitHub",
+            icon: "bi bi-github",
+            openInNewTab: true
+        },
+        tags: ["Java", "Library", "Maven"],
+        stats: [
+            { icon: "bi bi-star", value: "2" }
+        ]
+    },
+    {
+        title: "Mob Health",
+        description: "A configurable plugin that shows every mob's health above its head.",
+        image: "https://cdn.modrinth.com/data/VLCY8WJF/e3fc91f78b0b84c22d2df1252edb3e2099ea7444.png",
+        downloadLink: "https://modrinth.com/plugin/mob-health",
+        sourceLink: "https://github.com/Kalbskinder/MobHealthV2",
+        tags: ["Java", "PaperMC"],
+        slug: "mob-health"
+    },
+    {
+        title: "Lobby Parkour",
+        description: "A lightweight parkour system for modern Minecraft lobbies, with checkpoints and per-course leaderboards.",
+        image: "https://cdn.modrinth.com/data/p0vLoLma/776a52b513a2ab1d46fbfd8cdc5e53784f89e044.webp",
+        downloadLink: "https://modrinth.com/plugin/lobby-parkour",
+        sourceLink: "https://github.com/Crumb-Network/Lobby-Parkour",
+        tags: ["Java", "PaperMC"],
+        slug: "lobby-parkour"
+    },
+    {
+        title: "Infection",
+        description: "A recreation of the classic Infection minigame by Hypixel. With easy map creation and many features.",
+        image: "https://cdn.modrinth.com/data/5RQMBtQG/751ef8394583803f190a4e8d8cf9e9eb9e344406.png",
+        downloadLink: "https://modrinth.com/plugin/infection-minigame",
+        sourceLink: "https://github.com/Kalbskinder/Infection",
+        tags: ["Java", "PaperMC", "Minigame"],
+        slug: "infection-minigame"
+    }
+];
