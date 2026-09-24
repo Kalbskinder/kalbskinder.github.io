@@ -29,7 +29,7 @@
 
         const username = params.get("username");
         const themeParam = (params.get("theme") || "auto").toLowerCase();
-        const theme = ["light", "dark", "auto"].includes(themeParam) ? themeParam : "auto";
+        const theme = ["light", "dark", "auto", "bg", "banner"].includes(themeParam) ? themeParam : "auto";
 
         // optional live refresh: ?refresh=0 disables it, otherwise ms (default 10s).
         const refreshRaw = params.get("refresh");
